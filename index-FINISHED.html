@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="style-FINISHED.css">
+</head>
+<body>
+
+  <header>
+    <h1>Portafolio</h1>
+  </header>
+ 
+  <nav id="main" >
+    <ul>
+      <li class="logo"><a href="#">INICIO</a></li>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About  Me</a></li>
+      <li><a href="Habilidades/index-FINISHED.html">Habilidades</a></li>
+      <li><a href="./proyectos/index-FINISHED.html">Proyectos</a></li>
+      <li><a href="./Redes/index-FINISHED.html">Redes</a></li>
+    </ul>
+  </nav>
+
+   <img class="Caja-imagenPerfil" src="luis.jpg">
+
+  <div class="site-wrap">
+    <h2>Luis Antonio Martínez Martínez</h2>
+    <strong>Ingeniero Mecatrónico</strong>
+    <p>Apasionado de la tecnología y la resolución de problemas.  Me encanta resolver problemas y ayudar a las personas a entender y utilizar la tecnología de manera eficiente. Como ingeniero mecatrónico a través de prácticas y proyectos he adquirido una amplia comprensión de la tecnología y su aplicación en diferentes ámbitos.
+      Además de mi formación técnica, también poseo habilidades blandas esenciales para el trabajo en un equipo y la comunicación con los usuarios. Puedo trabajar bajo presión y tengo una actitud positiva y proactiva. Estoy seguro de que mis habilidades y experiencia serán un valioso aporte al equipo de Help Desk.</p>
+  </div>
+
+  <script>
+    // Regresa al inico
+    const nav = document.querySelector('#main');
+    let topOfNav = nav.offsetTop;
+    function fixNav() {
+      if (window.scrollY >= topOfNav) {
+        document.body.style.paddingTop = nav.offsetHeight + 'px';
+        document.body.classList.add('fixed-nav');
+      } else {
+        document.body.classList.remove('fixed-nav');
+        document.body.style.paddingTop = 0;
+      }
+    }
+
+    window.addEventListener('scroll', fixNav);
+  /*Luz de navagacion*/
+  const triggers = document.querySelectorAll('a');
+  const highlight = document.createElement('span');
+  highlight.classList.add('highlight');
+  document.body.appendChild(highlight);
+
+  function highlightLink() {
+    const linkCoords = this.getBoundingClientRect();
+    console.log(linkCoords);
+    const coords = {
+      width: linkCoords.width,
+      height: linkCoords.height,
+      top: linkCoords.top + window.scrollY,
+      left: linkCoords.left + window.scrollX
+    };
+
+    highlight.style.width = `${coords.width}px`;
+    highlight.style.height = `${coords.height}px`;
+    highlight.style.transform = `translate(${coords.left}px, ${coords.top}px)`;
+
+  }
+
+  triggers.forEach(a => a.addEventListener('mouseenter', highlightLink));
+  /*Luz de nav*/
+  </script>
+
+
+</body>
+</html>
